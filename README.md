@@ -91,7 +91,7 @@ Goal: Map local TCP sockets to their owning process IDs and identify which proce
 Command: Get-NetTCPConnection | Select-Object -Property LocalAddress, LocalPort, State, OwningProcess
 
 <img width="1108" height="504" alt="image" src="https://github.com/user-attachments/assets/117e7573-3712-4377-bde5-847a38ccc416" />
-_note the process ID listening on port 4444 which is associated with Metasploit_
+<i>note the process ID listening on port 4444 which is associated with Metasploit</i>
 
 <p>&nbsp;</p>
 
@@ -100,7 +100,7 @@ Goal: Use the process ID from the process listening on the suspicious port (4444
 Command: Get-Process | Select-Object -Property Path, Name, ID | Where-Object -Property Id -eq 6800
 
 <img width="1082" height="105" alt="image" src="https://github.com/user-attachments/assets/74af814c-b8a4-438a-87a9-9f5dda513eee" />
-_calcache is the same process we found earlier to be running from a temporary directory0_
+<i>calcache is the same process we found earlier to be running from a temporary directory0</i>
 
 <p>&nbsp;</p>
 
@@ -133,7 +133,7 @@ Goal: Enumerate the PowerShell drive HKCU:.
 Command: Get-ChildItem HKCU:
 
 <img width="687" height="409" alt="image" src="https://github.com/user-attachments/assets/6b03ca9e-c8e2-4c48-b70d-80ceca3e82db" />
-_Name = key, Property = key value; registry values in top-level keys for the HKEY_CURRENT_USER hive_
+<i>Name = key, Property = key value; registry values in top-level keys for the HKEY_CURRENT_USER hive</i>
 
 <p>&nbsp;</p>
 
@@ -142,22 +142,28 @@ Goal: Enumerate registry values in a specific key; check for processes in the AS
 Command: Get-ItemProperty “HKLM:\Software\Microsoft\Windows\CurrentVersion\Run”
 
 <img width="1105" height="211" alt="image" src="https://github.com/user-attachments/assets/d651bc80-de55-4053-a7f1-0767cbb660ca" />
-_2 programs present: “SecurityHealth” & “VMware User Process”_
+<i>2 programs present: “SecurityHealth” & “VMware User Process”</i>
+
+<p>&nbsp;</p>
 
 Command: Get-ItemProperty “HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce”
 
 <img width="966" height="62" alt="image" src="https://github.com/user-attachments/assets/6193450e-d69c-454a-8be4-559bcf2aa15b" />
-_no registry values present_
+<i>no registry values present</i>
+
+<p>&nbsp;</p>
 
 Command: Get-ItemProperty “HKCU:\Software\Microsoft\Windows\CurrentVersion\Run”
 
 <img width="1458" height="221" alt="image" src="https://github.com/user-attachments/assets/bc53cad6-0c9e-4815-b3e5-9c003a7d212c" />
-_there’s a “Calcache” program here that corresponds with the calcache process we discovered earlier_
+<i>there’s a “Calcache” program here that corresponds with the calcache process we discovered earlier</i>
+
+<p>&nbsp;</p>
 
 Command: Get-ItemProperty “HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce”
 
 <img width="952" height="52" alt="image" src="https://github.com/user-attachments/assets/2a12887e-31fd-46c3-82de-1615c321eb9b" />
-_no registry values present_
+<i>no registry values present</i>
 
 <p>&nbsp;</p>
 
@@ -226,7 +232,7 @@ Goal: Compare the 2 variables to find the differences
 Command: Compare-Object $servicesbaseline $servicesnow
 
 <img width="696" height="110" alt="image" src="https://github.com/user-attachments/assets/971c0a01-b09c-4aea-8b14-f1ead5eaddb8" />
-_a new service called Dynamics was found_
+<i>a new service called Dynamics was found</i>
 
 ## Users Differential Analysis
 
@@ -251,7 +257,7 @@ Goal: Compare the 2 variables to find the differences
 Command: Compare-Object $usersbaseline $usersnow
 
 <img width="636" height="108" alt="image" src="https://github.com/user-attachments/assets/802eef95-c5e7-4c80-aded-1ec6f96cc02e" />
-_there’s an added username: dynamics_
+<i>there’s an added username: dynamics</i>
 
 ## Scheduled Tasks Differential Analysis
 
@@ -284,7 +290,7 @@ Goal: Compare the 2 variables to find the differences
 Command: Compare-Object $scheduledtasksbaseline $scheduledtasksnow
 
 <img width="801" height="138" alt="image" src="https://github.com/user-attachments/assets/7be39fd8-9510-4ac0-baa9-eee68c27dafc" />
-_a Microsoft Dynamics scheduled task was added_
+<i>a Microsoft Dynamics scheduled task was added</i>
 
 # Scheduled Task Detail
 
@@ -346,7 +352,7 @@ Goal: Delete the the service.
 Command: sc.exe delete dynamics
 
 <img width="486" height="48" alt="image" src="https://github.com/user-attachments/assets/7b6d1f95-475b-47c0-82b2-8a868f2dca40" />
-_this is a legacy Windows CMD utility_
+<i>this is a legacy Windows CMD utility</i>
 
 <p>&nbsp;</p>
 
